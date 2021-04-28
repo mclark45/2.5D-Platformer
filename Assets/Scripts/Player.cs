@@ -13,12 +13,13 @@ public class Player : MonoBehaviour
     private float _playerJumpHeight = 15.0f;
     private float _playersYAxisVelocity;
     private bool _playerHasDoubleJumped = false;
+    private int _coins;
     void Start()
     {
         _controller = GetComponent<CharacterController>();
+
     }
 
-    // Update is called once per frame
     void Update()
     {
         PlayerMovement();
@@ -37,7 +38,7 @@ public class Player : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                _playersYAxisVelocity += _playerJumpHeight;
+                _playersYAxisVelocity = _playerJumpHeight;
             }
         }
         else
@@ -53,5 +54,11 @@ public class Player : MonoBehaviour
         playerVelocity.y = _playersYAxisVelocity;
 
         _controller.Move(playerVelocity * Time.deltaTime);
+    }
+
+    public void CoinsCollected()
+    {
+        _coins++;
+        UIManager.Instance.CoinsCollectedText(_coins);
     }
 }
