@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     private float _playerJumpHeight = 15.0f;
     private float _playersYAxisVelocity;
     private bool _playerHasDoubleJumped = false;
-    private int _coins;
+    private int _coins = 0;
     void Start()
     {
         _controller = GetComponent<CharacterController>();
