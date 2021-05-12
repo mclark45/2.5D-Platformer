@@ -7,7 +7,7 @@ public class UIManager : MonoBehaviour
 {
     private static UIManager _instance;
     [SerializeField]
-    private Text _score;
+    private Text _score, _lives;
 
     public static UIManager Instance
     {
@@ -29,5 +29,10 @@ public class UIManager : MonoBehaviour
     public void CoinsCollectedText(int coins)
     {
         _score.text = "Coins: " + coins;
+    }
+
+    public void LivesLeft(int lives)
+    {
+        _lives.text = "Lives: " + lives;
     }
 }

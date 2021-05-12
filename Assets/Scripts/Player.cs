@@ -14,15 +14,26 @@ public class Player : MonoBehaviour
     private float _playersYAxisVelocity;
     private bool _playerHasDoubleJumped = false;
     private int _coins = 0;
+    [SerializeField]
+    private int _lives = 3;
     void Start()
     {
         _controller = GetComponent<CharacterController>();
 
+        if (_controller == null)
+        {
+            Debug.LogError("CharacterController is null");
+        }
     }
 
     void Update()
     {
         PlayerMovement();
+    }
+
+    private void FixedUpdate()
+    {
+        UpdateLives();
     }
 
     private void PlayerMovement()
@@ -60,5 +71,25 @@ public class Player : MonoBehaviour
     {
         _coins++;
         UIManager.Instance.CoinsCollectedText(_coins);
+    }
+
+    public void UpdateLives()
+    {
+        if (transform.position.y <= -8f)
+        {
+            this.transform.position = new Vector3(-1f, 1.58f, 0f);
+            Debug.Log("position less than -8");
+            _lives--;
+            UIManager.Instance.LivesLeft(_lives);
+        }
+
+        if (_lives == 0)
+        {
+            _lives = 3;
+            _coins = 0;
+            UIManager.Instance.CoinsCollectedText(_coins);
+            UIManager.Instance.LivesLeft(_lives);
+            GameManager.Instance.ResetCoins();
+        }
     }
 }
