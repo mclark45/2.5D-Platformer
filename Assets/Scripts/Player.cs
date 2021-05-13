@@ -19,16 +19,23 @@ public class Player : MonoBehaviour
     private UIManager _uiManager;
     [SerializeField]
     private int _lives = 3;
+    private ElevatorPanel _elevatorPanel;
 
     // Start is called before the first frame update
     void Start()
     {
         _controller = GetComponent<CharacterController>();
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        _elevatorPanel = GameObject.Find("Elevator_Panel").GetComponent<ElevatorPanel>();
 
         if (_uiManager == null)
         {
             Debug.LogError("The UI Manager is NULL."); 
+        }
+
+        if (_elevatorPanel == null)
+        {
+            Debug.LogError("The ElevatorPanel is Null");
         }
 
         _uiManager.UpdateLivesDisplay(_lives);
@@ -85,5 +92,10 @@ public class Player : MonoBehaviour
         {
             SceneManager.LoadScene(0);
         }
+    }
+
+    public int CoinCount()
+    {
+        return _coins;
     }
 }
