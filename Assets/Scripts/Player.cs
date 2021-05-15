@@ -94,7 +94,6 @@ public class Player : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        Debug.DrawRay(hit.point, hit.normal, Color.red);
         if (!_controller.isGrounded && hit.transform.tag == "Wall")
         {
             _surfaceNormal = hit.normal;
