@@ -28,12 +28,12 @@ public class ElevatorPanel : MonoBehaviour
             if (_elevatorCalled == false)
             {
                 _callButtonMaterial.material.color = Color.green;
-                _elevatorCalled = true;
+               _elevatorCalled = true;
             }
             else if (_elevatorCalled == true)
             {
                 _callButtonMaterial.material.color = Color.red;
-                _elevatorCalled = false;
+               _elevatorCalled = false;
             }
             
             _elevator.CallElevator();

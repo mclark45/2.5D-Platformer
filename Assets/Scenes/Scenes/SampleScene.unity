@@ -445,8 +445,8 @@ GameObject:
   - component: {fileID: 442609755}
   - component: {fileID: 442609754}
   - component: {fileID: 442609753}
-  - component: {fileID: 442609756}
   - component: {fileID: 442609757}
+  - component: {fileID: 442609756}
   m_Layer: 0
   m_Name: Elevator_Panel
   m_TagString: Untagged
@@ -1705,7 +1705,7 @@ PrefabInstance:
     - target: {fileID: 8739375539376734321, guid: 3a7f53b22d7c026499590234396e5fcd,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Wall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a7f53b22d7c026499590234396e5fcd, type: 3}
@@ -1879,7 +1879,7 @@ GameObject:
   - component: {fileID: 1276055930}
   m_Layer: 0
   m_Name: Movable_Box
-  m_TagString: Untagged
+  m_TagString: Moving Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1912,7 +1912,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &1276055931
 BoxCollider:
@@ -2269,7 +2269,7 @@ PrefabInstance:
     - target: {fileID: 8739375539376734321, guid: 3a7f53b22d7c026499590234396e5fcd,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Wall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a7f53b22d7c026499590234396e5fcd, type: 3}
@@ -3097,6 +3097,7 @@ MonoBehaviour:
   _speed: 5
   _gravity: 0.5
   _jumpHeight: 20
+  _pushPower: 2
   _coins: 0
   _lives: 3
 --- !u!143 &1798249447
@@ -3172,7 +3173,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1798249445}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.26, y: 1.94, z: 0}
+  m_LocalPosition: {x: 14.56, y: 26.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 963194228}
@@ -3196,6 +3197,7 @@ GameObject:
   - component: {fileID: 1868382301}
   - component: {fileID: 1868382304}
   - component: {fileID: 1868382302}
+  - component: {fileID: 1868382303}
   m_Layer: 0
   m_Name: Pressure_Pad
   m_TagString: Untagged
@@ -3211,7 +3213,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1868382300}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.2, y: 25.8, z: 0.008}
+  m_LocalPosition: {x: 0.2, y: 25.8, z: 0}
   m_LocalScale: {x: 1, y: 0.1, z: 1}
   m_Children:
   - {fileID: 1025687088}
@@ -3231,6 +3233,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 10, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1868382303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1868382300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bde657f0cf236fb4596995815b3852c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!33 &1868382304
 MeshFilter:
   m_ObjectHideFlags: 0
