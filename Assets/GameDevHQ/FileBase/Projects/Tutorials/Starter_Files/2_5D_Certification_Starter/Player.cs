@@ -38,13 +38,15 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 
-                playerVelocity.y = _jumpHeight;
+                _playersYAxisVelocity = _jumpHeight;
             }
         }
         else
         {
-            playerVelocity.y -= _gravity;
+            _playersYAxisVelocity -= _gravity;
         }
+
+        playerVelocity.y += _playersYAxisVelocity;
 
         _controller.Move(playerVelocity * Time.deltaTime);
     }
