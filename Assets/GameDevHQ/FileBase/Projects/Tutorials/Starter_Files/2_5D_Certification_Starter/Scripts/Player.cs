@@ -8,9 +8,12 @@ public class Player : MonoBehaviour
     [SerializeField] private float _gravity = 1.0f;
     [SerializeField] private float _jumpHeight = 5.0f;
     private bool _jumping = false;
+    private bool _ledgeGrab = false;
+    private bool _isFalling = false;
     private float _playersYAxisVelocity;
     private CharacterController _controller;
     private Animator _playerAnim;
+    private LedgeGrab _activeLedge;
 
     void Start()
     {
@@ -32,6 +35,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         PlayerMovement();
+        ClimbUp();
     }
 
     private void PlayerMovement()
@@ -51,6 +55,8 @@ public class Player : MonoBehaviour
 
         if (_controller.isGrounded == true)
         {
+            _isFalling = false;
+
             if (_jumping == true)
             {
                 _jumping = false;
@@ -64,13 +70,47 @@ public class Player : MonoBehaviour
                 _playerAnim.SetBool("Jump", _jumping);
             }
         }
-        else
+        else if (_controller.isGrounded == false)
         {
             _playersYAxisVelocity -= _gravity;
+            _isFalling = true;
         }
+
+        _playerAnim.SetBool("Falling", _isFalling);
 
         playerVelocity.y += _playersYAxisVelocity;
 
         _controller.Move(playerVelocity * Time.deltaTime);
+    }
+
+    private void ClimbUp()
+    {
+        if (_ledgeGrab == true)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                _playerAnim.SetBool("ClimbUp", true);
+            }
+        }
+    }
+
+    public void LedgeGrab(Transform handPosition, LedgeGrab currentLedge)
+    {
+        _ledgeGrab = true;
+        _controller.enabled = false;
+        _playerAnim.SetBool("LedgeGrab", true);
+        _playerAnim.SetFloat("Speed", 0f);
+        _playerAnim.SetBool("Jump", false);
+        transform.position = handPosition.position;
+        _activeLedge = currentLedge;
+    }
+
+    public void OnClimbUpEnd()
+    {
+        transform.position = _activeLedge.GetStandPos().position;
+        _playerAnim.SetBool("ClimbUp", false);
+        _playerAnim.SetBool("LedgeGrab", false);
+        _controller.enabled = true;
+        _ledgeGrab = false;
     }
 }
