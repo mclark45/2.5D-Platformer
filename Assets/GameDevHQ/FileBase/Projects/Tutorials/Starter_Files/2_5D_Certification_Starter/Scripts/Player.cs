@@ -51,6 +51,15 @@ public class Player : MonoBehaviour
             Vector3 playerDirection = transform.localEulerAngles;
             playerDirection.y = playerMovement.z > 0 ? 0 : 180;
             transform.localEulerAngles = playerDirection;
+
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                _playerAnim.SetBool("Roll", true);
+            }
+            else
+            {
+                _playerAnim.SetBool("Roll", false);
+            }
         }
 
         if (_controller.isGrounded == true)
