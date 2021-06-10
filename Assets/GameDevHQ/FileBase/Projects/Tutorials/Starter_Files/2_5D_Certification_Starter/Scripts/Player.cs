@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     private CharacterController _controller;
     private Animator _playerAnim;
     private LedgeGrab _activeLedge;
+    private int _coins = 0;
 
     void Start()
     {
@@ -121,5 +122,11 @@ public class Player : MonoBehaviour
         _playerAnim.SetBool("LedgeGrab", false);
         _controller.enabled = true;
         _ledgeGrab = false;
+    }
+
+    public void Coins()
+    {
+        _coins += 1;
+        UIManager.Instance.CollectableCoins(_coins);
     }
 }
