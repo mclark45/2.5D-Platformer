@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float _speed = 5.0f;
     [SerializeField] private float _gravity = 1.0f;
     [SerializeField] private float _jumpHeight = 5.0f;
+    [SerializeField] private float _climbSpeed = 2.5f;
     private bool _jumping = false;
     private bool _ledgeGrab = false;
     private bool _isFalling = false;
@@ -42,10 +43,11 @@ public class Player : MonoBehaviour
     private void PlayerMovement()
     {
         float horizontalMovement = Input.GetAxisRaw("Horizontal");
-
-        Vector3 playerMovement = new Vector3(0, 0, horizontalMovement);
-        Vector3 playerVelocity = playerMovement * _speed;
-        _playerAnim.SetFloat("Speed", Mathf.Abs(horizontalMovement));
+        
+            Vector3 playerMovement = new Vector3(0, 0, horizontalMovement);
+            Vector3 playerVelocity = playerMovement * _speed;
+            _playerAnim.SetFloat("Speed", Mathf.Abs(horizontalMovement));
+       
 
        if (horizontalMovement != 0)
         {

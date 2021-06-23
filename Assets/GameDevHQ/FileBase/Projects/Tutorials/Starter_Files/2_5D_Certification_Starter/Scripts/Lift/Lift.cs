@@ -39,7 +39,6 @@ public class Lift : MonoBehaviour
 
     IEnumerator MoveElevator()
     {
-        Debug.Log("in coroutine");
         if (_isGoingUp == false)
         {
             yield return new WaitForSeconds(5.0f);
